@@ -2,6 +2,7 @@
 # Python
 import time
 
+
 # ============ Functions ============
 class Functions:
     # -- Window points --
@@ -43,7 +44,6 @@ class Functions:
 
         # Stop the listener
         listener.stop()
-
         # Return the selected point
         return ConfigData.temp_point
 
@@ -59,7 +59,8 @@ class Functions:
         # ======== Start of Code ========
         # Printing the start message
         messagebox.showinfo("Select Game Axes",
-                            "Press OK and left click on the top left and then the bottom right corners of the game axes.")
+                            "Press OK and left click on the top left and then the bottom right corners of the game "
+                            "axes.")
 
         # Getting the left top point
         ConfigData.left_top = Functions.select_point()
@@ -75,17 +76,15 @@ class Functions:
         from files.py.classes import ConfigData
 
         # ======== Start of Code ========
-        game_top_left = (-25, 15)
-        game_bottom_right = (25, -15)
-        game_width = game_bottom_right[0] - game_top_left[0]
-        game_height = game_top_left[1] - game_bottom_right[1]
+        game_width = ConfigData.game_bottom_right[0] - ConfigData.game_top_left[0]
+        game_height = ConfigData.game_top_left[1] - ConfigData.game_bottom_right[1]
 
         normalized_x = ((x - ConfigData.left_top[0]) / (
-                ConfigData.right_bottom[0] - ConfigData.left_top[0])) * game_width + game_top_left[0]
+                ConfigData.right_bottom[0] - ConfigData.left_top[0])) * game_width + ConfigData.game_top_left[0]
 
         # Invert the y-coordinate by subtracting from the top-left y-coordinate
         # and then inverting the direction since screen coordinates increase downwards
-        normalized_y = game_top_left[1] - (((y - ConfigData.left_top[1]) / (
+        normalized_y = ConfigData.game_top_left[1] - (((y - ConfigData.left_top[1]) / (
                 ConfigData.right_bottom[1] - ConfigData.left_top[1])) * game_height)
 
         return normalized_x, normalized_y
@@ -106,7 +105,8 @@ class Functions:
         # ======== Start of Code ========
         # Printing the start message
         messagebox.showinfo("Game Start",
-                            "Press OK and left click your character and then select the other players. Hit escape and click to select the last player.")
+                            "Press OK and left click your character and then select the other players. Hit escape and "
+                            "click to select the last player.")
 
         # Getting the start point and normalizing it
         ConfigData.start_point = Functions.select_point()

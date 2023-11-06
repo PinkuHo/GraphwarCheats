@@ -3,7 +3,8 @@ class ConfigData:
     # ======== Declaring Variables ========
     # Ints
     enemyCounter = 0
-    game_w, game_h = 50, 30  # total width and height of the game board in game coordinates
+    game_top_left = (-25, 15)
+    game_bottom_right = (25, -15)
 
     # Screen points
     temp_point = None  # This is used to store a temporary point for the callback function

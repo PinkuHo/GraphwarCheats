@@ -40,7 +40,7 @@ class Functions:
 
         # Wait for the user to click the mouse
         while ConfigData.temp_point is None:
-            time.sleep(1)
+            time.sleep(0.25)
 
         # Stop the listener
         listener.stop()
@@ -123,21 +123,21 @@ class Functions:
             # ==== Start of Code ====
             # Adding the point to the list
             ConfigData.enemy_points.append(next_point)
-            print(f"Enemy point {counter} made: {next_point}")
+            print(f"Point {counter} made: {next_point}")
             counter += 1
 
     @staticmethod
     def calculate_formula_graphwar(point_list):
-        start = point_list[0]
-        x1, y1 = start[0], start[1]
+        from files.py.classes import ConfigData
+        x1, y1 = ConfigData.start_point[0], ConfigData.start_point[1]
         result = ""
 
-        for point in point_list[1:]:
-            x2, y2 = point[0], point[1] - y1
-            result += "+" + str(y2) + "*((x+" + str(x2) + ")/(abs(x+" + str(x2) + ")+0.01))"
+        for point in point_list:
+            x2, y2 = point[0], point[1]
+            result += "+" + str(round(y2-y1,2)) + "*((x-" + str(round(x2,2)) + ")/(abs(x-" + str(round(x2,2)) + ")+0.005))"
             x1, y1 = x2, y2
         result = "0.5*(" + result[1:] + ")"
-        result = result.replace("+-", "-")
+        result = result.replace("--", "+")
         return result
 
     # -- Start --

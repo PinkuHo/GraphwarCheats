@@ -128,7 +128,10 @@ class Functions:
 
     @staticmethod
     def calculate_formula_graphwar(point_list):
+        # ======== Imports ========
         from files.py.classes import ConfigData
+
+        # ======== Start of Code ========
         x1, y1 = ConfigData.start_point[0], ConfigData.start_point[1]
         result = ""
 
